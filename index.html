@@ -93,7 +93,6 @@ $('.motor1 input').on('input', function(){
     url:"https://egb111-server.jamesprince.me/set/motor/1/",
     type:"POST",
     data:$('.motor1 input')[0].value,
-	crossDomain: true
 }); 
 }); 
 $('.motor2 h2').html($('.motor2 input').attr('value') + "%");
@@ -104,7 +103,6 @@ $('.motor2 input').on('input', function(){
       url:"https://egb111-server.jamesprince.me/set/motor/2/",
       type:"POST",
       data:$('.motor2 input')[0].value,
-    crossDomain: true
 }); 
 }); 
 $('.motor3 h2').html($('.motor3 input').attr('value') + "%");
