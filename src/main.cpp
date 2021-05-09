@@ -45,10 +45,8 @@ void setup() {
 void AskServer(String url, int motor){
   HTTPClient http;
 
-  // Your Domain name with URL path or IP address with path
   http.begin(url.c_str());
 
-  // Send HTTP GET request
   int httpResponseCode = http.GET();
 
   if (httpResponseCode>0) {
@@ -66,7 +64,6 @@ void AskServer(String url, int motor){
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   if(WiFi.status()== WL_CONNECTED){
     AskServer("http://egb111-server.jamesprince.me/get/motor/1/", 0);
     AskServer("http://egb111-server.jamesprince.me/get/motor/2/", 1);
