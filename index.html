@@ -3,15 +3,17 @@
 <head>
 <title>Page Title</title>
   <style>
+        body{
+      margin: 2vh 1vw;
+    }
     .row{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: auto auto auto;
+  width: 98vw;
 }
 .slidecontainer {
-  width: 100vh; /* Width of the outside container */
-  padding: 10px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto auto;
 }
 .slidecontainer div {
   margin: auto;
@@ -26,7 +28,7 @@ h1, h2  {
   -webkit-appearance: slider-vertical; /* WebKit */
   appearance: slider-vertical;
   width: 50px; /* Full-width */
-  height: 100vh; /* Specified height */
+  height: 96vh; /* Specified height */
   background: #d3d3d3; /* Grey background */
   outline: none; /* Remove outline */
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
