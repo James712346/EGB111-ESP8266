@@ -1,7 +1,10 @@
 #include <Arduino.h>
-void StartWebServer(){
+#include <ESP8266WiFi.h>
+#include <ESP8266HTTPClient.h>
+#include <WiFiClient.h>
 
-}
+const char* ssid = "Prince Network";
+const char* password = "***REMOVED***";
 
 
 void MotorControl(int Motor, int Speed){
@@ -19,22 +22,56 @@ void MotorControl(int Motor, int Speed){
   }
 }
 
+void ConnectToWifi(){
+  WiFi.begin(ssid, password);
+  Serial.println("Connecting");
+  while(WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("");
+  Serial.print("Connected to WiFi network with IP Address: ");
+}
 void setup() {
+  Serial.begin(115200);
+
   pinMode(0, OUTPUT);
   pinMode(14, OUTPUT);
   pinMode(4, OUTPUT);
   pinMode(12, OUTPUT);
+  ConnectToWifi();
+}
 
+void AskServer(String url, int motor){
+  HTTPClient http;
+
+  // Your Domain name with URL path or IP address with path
+  http.begin(url.c_str());
+
+  // Send HTTP GET request
+  int httpResponseCode = http.GET();
+
+  if (httpResponseCode>0) {
+    Serial.print("HTTP Response code: ");
+    Serial.println(httpResponseCode);
+    Serial.println(http.getString().toInt());
+    MotorControl(motor, http.getString().toInt());
+  }
+  else {
+    Serial.print("Error code: ");
+    Serial.println(httpResponseCode);
+  }
+
+  http.end();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  for(int i=-100; i<100; i=i+5){
-    MotorControl(1, i);
-    delay(1000);
+  if(WiFi.status()== WL_CONNECTED){
+    AskServer("http://egb111-server.jamesprince.me/get/motor/1/", 0);
+    AskServer("http://egb111-server.jamesprince.me/get/motor/2/", 1);
+  } else {
+    ConnectToWifi();
   }
-  for(int i=100; i>-100; i=i-5){
-    MotorControl(1, i);
-    delay(1000);
-  }
+  delay(500);
 }
