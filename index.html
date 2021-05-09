@@ -57,6 +57,31 @@ h1, h2  {
   cursor: pointer; /* Cursor on hover */
 }
   </style>
+</head>
+<body>
+<div class="row">
+<div class="slidecontainer motor1">
+  <input type="range" min="-100" max="100" value="0" class="slider" orient="vertical">
+  <div> 
+    <h1>Motor 1</h1>
+    <h2>###%</h2>
+  </div>
+</div>
+<div class="slidecontainer motor2">
+  <input type="range" min="-100" max="100" value="0" class="slider" orient="vertical">
+  <div> 
+    <h1>Motor 2</h1>
+    <h2>###%</h2>
+  </div>
+</div>
+<div class="slidecontainer motor3">
+  <input type="range" min="-100" max="100" value="0" class="slider" orient="vertical">
+  <div> 
+    <h1>Motor 3</h1>
+    <h2>###%</h2>
+  </div>
+</div>
+</div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js">
   </script>
   <script>
@@ -94,30 +119,5 @@ $('.motor3 input').on('input', function(){
     $('.motor3 h2').html($('.motor3 input')[0].value + "%");
 }); 
   </script>
-</head>
-<body>
-<div class="row">
-<div class="slidecontainer motor1">
-  <input type="range" min="-100" max="100" value="0" class="slider" orient="vertical">
-  <div> 
-    <h1>Motor 1</h1>
-    <h2>###%</h2>
-  </div>
-</div>
-<div class="slidecontainer motor2">
-  <input type="range" min="-100" max="100" value="0" class="slider" orient="vertical">
-  <div> 
-    <h1>Motor 2</h1>
-    <h2>###%</h2>
-  </div>
-</div>
-<div class="slidecontainer motor3">
-  <input type="range" min="-100" max="100" value="0" class="slider" orient="vertical">
-  <div> 
-    <h1>Motor 3</h1>
-    <h2>###%</h2>
-  </div>
-</div>
-</div>
   </body>
 </html>
