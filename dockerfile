@@ -1,10 +1,10 @@
 # start from base
 
-FROM ubuntu:18.04
+FROM alpine:3.7
 
 LABEL maintainer="James Prince <james712346@gmail.com>"
 
-RUN apt-get update -y && \ apt-get install -y python-pip python-dev
+RUN apk update && apk add python python-dev py-pip
 
 # We copy just the requirements.txt first to leverage Docker cache
 
@@ -17,3 +17,4 @@ RUN pip install -r requirements.txt
 COPY . /app
 
 CMD [ "python", "./app.py" ]
+
