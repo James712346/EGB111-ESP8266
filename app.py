@@ -1,10 +1,13 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
 Motor1 = 0
 Motor2 = 0
+@app.route("/")
+def main():
+    return render_template('index.html')
 
 @app.route("/get/motor/1/")
 def MotorGet1():

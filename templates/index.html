@@ -64,21 +64,21 @@ h1, h2  {
 <div class="row">
 <div class="slidecontainer motor1">
   <input type="range" min="-100" max="100" value="0" class="slider" orient="vertical">
-  <div> 
+  <div>
     <h1>Motor 1</h1>
     <h2>###%</h2>
   </div>
 </div>
 <div class="slidecontainer motor2">
   <input type="range" min="-100" max="100" value="0" class="slider" orient="vertical">
-  <div> 
+  <div>
     <h1>Motor 2</h1>
     <h2>###%</h2>
   </div>
 </div>
 <div class="slidecontainer motor3">
   <input type="range" min="-100" max="100" value="0" class="slider" orient="vertical">
-  <div> 
+  <div>
     <h1>Motor 3</h1>
     <h2>###%</h2>
   </div>
@@ -96,8 +96,8 @@ $('.motor1 input').on('input', function(){
     type:"POST",
     headers: {             'Accept': 'text'         },
     data:$('.motor1 input')[0].value
-}); 
-}); 
+});
+});
 $('.motor2 h2').html($('.motor2 input').attr('value') + "%");
 
 $('.motor2 input').on('input', function(){
@@ -107,13 +107,13 @@ $('.motor2 input').on('input', function(){
       type:"POST",
       data:$('.motor2 input')[0].value,
       headers: {             'Accept': 'text'         }
-}); 
-}); 
+});
+});
 $('.motor3 h2').html($('.motor3 input').attr('value') + "%");
 
 $('.motor3 input').on('input', function(){
     $('.motor3 h2').html($('.motor3 input')[0].value + "%");
-}); 
+});
   </script>
   </body>
 </html>
