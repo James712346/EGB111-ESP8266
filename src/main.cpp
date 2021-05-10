@@ -3,8 +3,8 @@
 #include <ESP8266HTTPClient.h>
 #include <WiFiClient.h>
 
-const char* ssid = "Prince Network";
-const char* password = "***REMOVED***";
+const char* ssid = "James_iPhone";
+const char* password = "PasswordsAreCool"; //There you go github, you can connect to my localhost if you ever meet me in rl
 
 
 void MotorControl(int Motor, int Speed){
@@ -25,12 +25,12 @@ void MotorControl(int Motor, int Speed){
 void ConnectToWifi(){
   WiFi.begin(ssid, password);
   Serial.println("Connecting");
+  digitalWrite(2, LOW);
   while(WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
   }
-  Serial.println("");
-  Serial.print("Connected to WiFi network with IP Address: ");
+  digitalWrite(2, HIGH);
 }
 void setup() {
   Serial.begin(115200);
@@ -39,6 +39,7 @@ void setup() {
   pinMode(14, OUTPUT);
   pinMode(4, OUTPUT);
   pinMode(12, OUTPUT);
+  pinMode(2, OUTPUT);
   ConnectToWifi();
 }
 
@@ -50,14 +51,14 @@ void AskServer(String url, int motor){
   int httpResponseCode = http.GET();
 
   if (httpResponseCode>0) {
-    Serial.print("HTTP Response code: ");
-    Serial.println(httpResponseCode);
-    Serial.println(http.getString().toInt());
     MotorControl(motor, http.getString().toInt());
   }
   else {
     Serial.print("Error code: ");
+    digitalWrite(2, LOW);
     Serial.println(httpResponseCode);
+    delay(500);
+    digitalWrite(2, HIGH);
   }
 
   http.end();
@@ -65,8 +66,8 @@ void AskServer(String url, int motor){
 
 void loop() {
   if(WiFi.status()== WL_CONNECTED){
-    AskServer("http://egb111-server.jamesprince.me/get/motor/1/", 0);
-    AskServer("http://egb111-server.jamesprince.me/get/motor/2/", 1);
+    AskServer("http://egb111.jamesprince.me/get/motor/1/", 0);
+    AskServer("http://egb111.jamesprince.me/get/motor/2/", 1);
   } else {
     ConnectToWifi();
   }
