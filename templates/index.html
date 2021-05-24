@@ -117,6 +117,7 @@
 
     $('.motor1 h2').html($('.motor1 input').attr('value') + "%");
     $('.motor2 h2').html($('.motor2 input').attr('value') + "%");
+    $('.motor3 h2').html($('.motor3 input').attr('value') + "%");
 
     $('.motor1 input').on('input', function() {
       $('.motor1 h2').html($('.motor1 input')[0].value + "%");
@@ -141,10 +142,18 @@
         }
       });
     });
-    $('.motor3 h2').html($('.motor3 input').attr('value') + "%");
+
 
     $('.motor3 input').on('input', function() {
       $('.motor3 h2').html($('.motor3 input')[0].value + "%");
+      $.ajax({
+        url: "/set/motor/3/",
+        type: "POST",
+        data: $('.motor3 input')[0].value,
+        headers: {
+          'Accept': 'text'
+        }
+      });
     });
   </script>
 </body>

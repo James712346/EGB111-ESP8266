@@ -5,6 +5,7 @@ CORS(app)
 
 Motor1 = 0
 Motor2 = 0
+Motor3 = 0
 
 
 @app.route("/")
@@ -21,6 +22,10 @@ def MotorGet1():
 def MotorGet2():
     return str(Motor2)
 
+@app.route("/get/motor/3/")
+def MotorGet2():
+    return str(Motor3)
+
 
 @app.route("/set/motor/1/", methods=['POST'])
 def MotorSet1():
@@ -36,6 +41,13 @@ def MotorSet2():
     print(request.get_data())
     Motor2 = int(request.get_data())
     return str(Motor2)
+
+@app.route("/set/motor/3/", methods=['POST'])
+def MotorSet2():
+    global Motor3
+    print(request.get_data())
+    Motor3 = int(request.get_data())
+    return str(Motor3)
 
 
 if __name__ == '__main__':
