@@ -43,7 +43,7 @@ def MotorSet2():
     return str(Motor2)
 
 @app.route("/set/motor/3/", methods=['POST'])
-def MotorSet2():
+def MotorSet3():
     global Motor3
     print(request.get_data())
     Motor3 = int(request.get_data())
