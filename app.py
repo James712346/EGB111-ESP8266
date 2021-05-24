@@ -23,7 +23,7 @@ def MotorGet2():
     return str(Motor2)
 
 @app.route("/get/motor/3/")
-def MotorGet2():
+def MotorGet3():
     return str(Motor3)
 
 
